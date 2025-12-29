@@ -1,0 +1,122 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.exchange {
+  &__dropdown{
+    background: white;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    z-index: 9;
+    border-radius: 4px;
+    top: 76px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    &__item{
+      padding: 15px;
+      border-bottom: 1px solid #ececec;
+      cursor: pointer;
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      font-weight: 400;
+      &:hover{
+        background-color: #f4f4f4;
+      }
+    }
+  }
+  &__bg {
+    background: url("../../assets/BookHeader.svg") center center/cover;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      color: white;
+      font-size: 1.95rem;
+      font-weight: 600;
+      margin-top: 2.9rem;
+      letter-spacing: 0.03em;
+    }
+    &__search {
+      width: 65%;
+
+      &__text {
+        width: 100%;
+        color: white;
+        .MuiIconButton-root {
+          color: white;
+          cursor: pointer;
+        }
+        input{
+          padding: 10.5px 14px;
+        }
+        .MuiOutlinedInput-root {
+          position: relative;
+          border-radius: 4px;
+          color: white;
+          border: 3px solid white;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+  &__result {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    letter-spacing: 0.03rem;
+    font-weight: 600;
+    padding-left: 1rem;
+    span {
+      color: $theme-a;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .exchange {
+    &__bg {
+      h2 {
+        font-size: 1.4rem;
+        margin-top: 4.5rem;
+      }
+      &__search {
+        width: 80%;
+        &__text {
+          .MuiOutlinedInput-root {
+            margin-top: 0.65rem;
+          }
+        }
+      }
+    }
+  }
+  &__result {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .exchange {
+    &__bg {
+      h2 {
+        font-size: 0.88rem;
+        margin-top: 5.5rem;
+      }
+      &__search {
+        width: 90%;
+        &__text {
+          .MuiOutlinedInput-root {
+            margin-top: 0.5rem;
+          }
+          .MuiOutlinedInput-input {
+            padding: 6.5px 10px !important;
+          }
+        }
+      }
+    }
+    &__result {
+      font-size: 1rem;
+    }
+  }
+}

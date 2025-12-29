@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nopost {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__image {
+    img {
+      object-fit: cover;
+      height: 14rem;
+      max-width: 17rem;
+    }
+  }
+  h3 {
+    font-family: Roboto, sans-serif;
+    font-weight: 600;
+    color: $dark-grey;
+    letter-spacing: 0.03em;
+    font-size: 1.35rem;
+    text-align: center;
+  }
+}

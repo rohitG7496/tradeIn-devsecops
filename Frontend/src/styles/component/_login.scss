@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.MuiDialog-scrollPaper {
+  margin: 0 auto;
+  width: 45rem;
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+
+  &__left {
+    width: 18rem;
+    height: 100%;
+    background-color: $theme-a;
+    p {
+      color: white;
+      font-family: Roboto, sans-serif;
+      padding-top: 8px !important;
+      font-size: 0.8125rem;
+      padding-left: 24px !important;
+      letter-spacing: 0.03em;
+      font-weight: 500;
+    }
+    h1 {
+      color: white;
+      font-family: "Roboto", sans-serif;
+      text-align: center;
+      padding-left: 8px !important;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    h2 {
+      color: white;
+      font-family: "Roboto", sans-serif;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      margin-top: 5rem;
+    }
+    &__logo {
+      display: flex;
+      align-items: center;
+      padding: 24px 0 0 24px !important;
+
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+    &__loginImage {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      width: 18rem;
+      margin-top: 1rem;
+
+      img {
+        width: 100%;
+        height: 15rem;
+        margin: 0 auto;
+        object-fit: cover;
+      }
+    }
+  }
+  &__right {
+    width: 100%;
+    h2 {
+      color: $black;
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      margin: 25px;
+      font-size: 1.45rem;
+      letter-spacing: 0.03em;
+      margin-top: 2rem;
+    }
+    &__myForm {
+      padding-left: 25px !important;
+      padding-right: 25px !important;
+      font-family: "Roboto", sans-serif;
+      margin-top: 12px;
+      width: 100%;
+      &__close {
+        position: absolute !important;
+        bottom: 14px;
+        right: 24px;
+        background: $light-grey !important;
+        padding: 5px 16px !important;
+        color: white !important;
+        span {
+          font-family: Oswald !important;
+          letter-spacing: 0.05em !important;
+          font-weight: 500 !important;
+          font-size: 0.875rem;
+        }
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+      &__formData {
+        font-family: "Roboto", sans-serif;
+        color: $dark-grey;
+        margin-bottom: 24px;
+        &__select{
+          width: 100%;
+          input{
+            padding: 8px 14px !important;
+          }
+        }
+        &__username {
+          width: 100%;
+          div {
+            margin-top: 8px;
+            background: $background;
+            border: none;
+            border-radius: 2px;
+            padding: 9px !important;
+            // padding-left: 0 !important;
+            // width: 100%;
+            font-size: 0.875rem;
+            letter-spacing: 0.03em;
+            input {
+              font-family: Roboto, sans-serif !important;
+              font-size: 0.875rem !important;
+              font-weight: 400 !important;
+              letter-spacing: 0.04em !important;
+              color: $black !important;
+              padding: 0;
+              &::placeholder {
+                font-family: Roboto, sans-serif !important;
+                font-size: 0.8125rem !important;
+                letter-spacing: 0.03em !important;
+                color: $light-grey !important;
+              }
+            }
+            div {
+              padding: 0 !important;
+              margin: 0 !important;
+              margin-right: 12px !important;
+              margin-left: 6px !important;
+            }
+            fieldset {
+              border: none !important;
+            }
+          }
+        }
+        label {
+          color: $dark-grey;
+          font-family: "Roboto", sans-serif;
+          font-weight: 500;
+          font-size: 0.875rem;
+          letter-spacing: 0.03em;
+        }
+      }
+
+      &__pass {
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        color: $light-grey;
+        margin-top: -12px;
+        font-size: 0.85rem;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        &:hover {
+          color: $theme-a;
+          text-decoration: underline;
+        }
+      }
+      &__loginButton {
+        color: white !important;
+        background-color: #9147ff !important;
+        width: 100% !important;
+        margin: 17px 0px !important;
+        font-size: 1.1rem !important;
+        padding: 4px 0 !important;
+        border-radius: 2px !important;
+        margin-top: 2.2rem !important;
+        &__disable {
+          width: 100% !important;
+          margin: 17px 0px !important;
+          font-size: 1.1rem !important;
+          padding: 4px 0 !important;
+          border-radius: 2px !important;
+          margin-top: 2.2rem !important;
+          background-color: #eee !important;
+          color: $light-grey !important;
+          span {
+            font-family: Oswald !important;
+            letter-spacing: 0.05em !important;
+            font-weight: 500 !important;
+          }
+        }
+        span {
+          font-family: Oswald !important;
+          letter-spacing: 0.05em !important;
+          font-weight: 500 !important;
+        }
+        &:hover {
+          background-color: $theme-a;
+          filter: brightness(0.8);
+        }
+      }
+
+      &__signup {
+        font-family: "Roboto", sans-serif !important;
+        color: $light-grey !important;
+        margin-top: 16px;
+        font-size: 0.875rem !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.03em;
+
+        a {
+          font-family: "Roboto", sans-serif !important;
+          text-decoration: none;
+          color: $dark-grey !important;
+          font-size: 0.875rem !important;
+          font-weight: 500 !important;
+          letter-spacing: 0.03em !important;
+          &:hover {
+            text-decoration: underline;
+            color: $theme-a !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.moboLogo {
+  display: flex;
+  align-items: center;
+  &__title{
+    background-color: $theme-a;
+    box-shadow: 0 0 10px 0 $light-grey;
+  }
+  &__icon{
+    button{
+      svg{
+        color: white;
+      }
+    }
+  }
+  img {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+    padding-left: 9px;
+    margin: 0 !important;
+    font-weight: 700;
+    color: white;
+    font-family: Roboto, sans-serif;
+    letter-spacing: 0.03em;
+  }
+
+ 
+}
+.para {
+  padding-left: 3rem;
+  p{
+    font-size: .875rem;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: white;
+  }
+}
+
+@media (max-width: 991px) {
+  .MuiDialog-scrollPaper {
+    width: 100% !important;
+  }
+  .moboLogo {
+    padding-left: 3rem;
+    &__icon {
+      margin-left: -3rem;
+    }
+  }
+  .login {
+    &__right {
+      h2 {
+        padding-left: 3rem;
+        font-size: 1.45rem;
+      }
+      &__myForm {
+        width: 80% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        &__formData {
+          &__username {
+            width: 100%;
+          }
+        }
+        &__loginButton {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 500px) {
+  .login {
+    &__right {
+      h2 {
+        font-size: 1.4rem;
+        padding-left: 8px!important;
+        margin-left: 0 !important;
+      }
+      &__myForm {
+        padding: 0 8px !important;
+      }
+    }
+  }
+}

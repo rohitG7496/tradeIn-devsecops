@@ -1,0 +1,403 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+
+.home{
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:   url(https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&fit=crop&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+870w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+1170w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+1470w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+1740w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+1770w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+2070w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+2340w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+2370w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+2670w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+2940w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+2970w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+3270w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+3540w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+3570w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+3870w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+4140w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+4170w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+4470w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+4740w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+4770w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+5070w%2C+https%3A%2F%2Fimages.unsplash.com%2Fphoto-1483985988355-763728e1935b%3Fauto%3Dformat&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D+5185w&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&ixlib=rb-4.0.3&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&q=80&w=870&w=1170&w=1470&w=1740&w=1770&w=2070&w=2340&w=2370&w=2670&w=2940&w=2970&w=3270&w=3540&w=3570&w=3870&w=4140&w=4170&w=4470&w=4740&w=4770&w=5070&w=5185);
+  background-position: 50% 50%;
+  &__btm{
+    position: absolute;
+    bottom: 0;
+    padding: 36px;
+    background: rgb(117, 117, 117);
+    &__fs{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      h4{
+        color: white;
+        font-size: 1.25rem;
+        letter-spacing: 0.03em;
+        font-weight: 500;
+      }
+      h6{
+        font-size: 0.85rem;
+        letter-spacing: 0.03em;
+        text-align: center;
+        width: 80%;
+        color: white;
+        font-weight: 400; 
+      }
+    }
+  }
+  &__ttl{
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 0.03em;
+    padding-left: 2rem;
+  }
+}
+
+.acc{
+  margin: auto !important;
+  width: auto !important;
+  &__fs{
+    padding: 12px;
+    text-align: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    img{
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // margin-top: 16px;
+      // margin-bottom: 8px;
+    }h3{
+      font-weight: 500;
+      font-size: 1.125rem;
+      letter-spacing: 0.03em;
+      color: $black;
+    }
+    h5{
+      font-weight: 400;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      color: $dark-grey;
+    }
+  }
+}
+.authhome {
+  &__upper {
+    display: flex;
+    flex-direction: column;
+    background: $theme-a;
+    padding: 16px;
+    margin-bottom: 1.2rem;
+    &__profile {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      align-items: center;
+      text-align:center;
+      &__coins{
+        display: flex;
+        align-items: center;
+        width: 4rem;
+        justify-content: space-around;
+        color: white;
+        font-family: roboto;
+        font-weight: 500;
+      }
+      &__coinsbig{
+        display: flex;
+        align-items: center;
+        width: 4rem;
+        justify-content: space-around;
+        color: #6e6e6e;
+        font-family: roboto;
+        font-weight: 500;
+        margin: 0 auto;
+      }
+      &__pic {
+        // padding-left: 25px;
+        width: max-content;
+        position: relative;
+        img {
+          height: 75px;
+          max-width: 75px;
+          border: 4px solid white;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        &__cam {
+          background: white;
+          height: auto;
+          border-radius: 50%;
+          position: absolute;
+          bottom: 5px;
+          right: 0px;
+          padding: 3px;
+          svg{
+            color:$dark-grey !important;
+            font-size:1rem;
+          }
+          .MuiButton-root {
+            min-width: auto !important;
+            padding: 0px;
+            background: none;
+            border-radius: 50%;
+            &:hover {
+              background: none;
+              filter: brightness(0.8);
+            }
+          }
+          &__close {
+            position: absolute;
+            top: -2px;
+            right: -10px;
+
+            cursor: pointer;
+          }
+          img {
+            position: absolute;
+            bottom: 4px;
+            right: 8px;
+            height: 75px;
+            width: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          .MuiButton-contained {
+            box-shadow: none !important;
+          }
+        }
+      }
+
+
+      &__headings {
+        h3 {
+          font-family: Roboto, sans-serif;
+          font-weight: 600;
+          color: white;
+          letter-spacing: 0.03em;
+          font-size: 1.5rem;
+          text-align: center;
+        }
+        h5 {
+          font-family: Roboto, sans-serif;
+          font-weight: 500;
+          color: white;
+          letter-spacing: 0.03em;
+          font-size: 1rem;
+          text-align: center;
+        }
+      }
+    }
+    &__icon1 {
+      display: flex;
+
+      h3 {
+        font-family: Roboto, sans-serif;
+        font-weight: 500;
+        color: white;
+        letter-spacing: 0.03em;
+        font-size: 1.3rem;
+        padding-left: 10px;
+      }
+    }
+    &__icon2 {
+      color: white;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    padding: 16px;
+    padding-top: 2px;
+    cursor: pointer;
+    border-bottom: 1.5px solid #e6e6e6;
+    &__icons {
+      color: #6e6e6e;
+      font-size: 1.38rem;
+      font-weight: 500;
+      margin: 0 !important;
+      display: flex;
+      font-family: Roboto, sans-serif;
+      letter-spacing: 0.04em;
+      padding-top: 10px !important;
+      padding-left: 6px;
+      svg {
+        color: $dark-grey;
+        margin-right: 10px;
+        font-size: 1.6rem;
+      }
+      &__nxt {
+        svg {
+          position: absolute;
+          right: 0;
+          font-size: 2.4rem;
+          cursor: pointer;
+        }
+      }
+    }
+    &__in {
+      color: $light-grey !important;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin: 0 !important;
+      display: flex;
+      font-family: Roboto, sans-serif;
+      align-items: center;
+      letter-spacing: 0.04em;
+      padding-top: 6px;
+      padding-left: 2.3rem;
+    }
+  }
+  &__btn {
+    width: 92%;
+    margin: 0 auto;
+    margin-bottom:5rem;
+    &__logout {
+      color: $theme-a !important;
+      background-color: white !important;
+      width: 100% !important;
+      margin: 14px 0px !important;
+      font-size: 1.3rem !important;
+      padding: 4px 0 !important;
+      border: 2px solid $theme-a !important;
+      border-radius: 2px !important;
+      margin-top: 2.2rem !important;
+      span {
+        font-family: Oswald !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 500 !important;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 500px) {
+  .home{
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    height:auto;
+    min-height: auto;
+    &__btm{
+      position: absolute;
+      bottom: 3rem;
+      opacity: 0.91;
+      padding: 10px 56px;
+      // background: #757575;
+    }
+    &__ttl{
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.01em;
+      padding-left: 1.5rem;
+    }
+  }
+  .authhome {
+    &__upper {
+      &__profile {
+        margin-top: 1rem;
+        &__img {
+          height: 60px;
+          max-width: 60px;
+        }
+      }
+    }
+    &__menu {
+      &__icons {
+      }
+      &__in {
+        font-size: 0.95rem;
+        padding-top: 10px;
+        padding-left: 1.7rem;
+      }
+    }
+  }
+}
+
+.ordertitle {
+  background: $theme-a;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  display:flex;
+  align-items:center;
+  button{
+    color:white;
+    padding:0 !important;
+  }
+  .MuiTypography-h6 {
+    font-size: 1.3rem !important;
+  }
+  .MuiSvgIcon-root {
+    margin-right: 7px;
+  }
+}
+
+.ordersum {
+  padding: 16px;
+  &__id {
+    color: $light-grey;
+    padding: 6px 0px;
+    font-size: 1rem;
+  }
+  &__card {
+    padding: 13px 0;
+    margin-top: 8px;
+  }
+  &__shipping {
+    padding: 8px;
+    padding-bottom: 1rem;
+    h3 {
+      font-family: Roboto, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: black;
+    }
+    h2 {
+      color: $dark-grey;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    p {
+      color: $light-grey;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+  }
+  &__price {
+    padding: 8px;
+    padding-bottom: 1rem;
+    h3 {
+      font-family: Roboto, sans-serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: black;
+    }
+    &__det {
+      &__cat {
+        font-family: Roboto, sans-serif;
+        font-size: 0.92rem;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        color: black;
+        padding: 2px 0;
+      }
+      &__amt {
+        font-family: Roboto, sans-serif;
+        font-size: 0.92rem;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        color: black;
+        padding: 2px 0;
+      }
+    }
+  }
+}

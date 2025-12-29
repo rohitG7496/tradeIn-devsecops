@@ -1,0 +1,108 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.unauthhome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: $theme-a !important;
+  padding: 0 2.5rem;
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px;
+    padding-bottom: 0;
+    &__rgt {
+      &__login {
+        color: white;
+        border: 2px solid white;
+        padding: 8px 29px;
+        font-size: 1.125rem;
+        font-family: Roboto, sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        margin-right: 16px;
+        &:hover {
+          background-color: white;
+          color: black !important;
+          transition: linear 0.2s;
+        }
+      }
+      &__sign {
+        color: white;
+        border: 2px solid white;
+        padding: 8px 29px;
+        font-size: 1.125rem;
+        font-family: Roboto, sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        &:hover {
+          background-color: white;
+          color: black !important;
+          transition: linear 0.2s;
+        }
+      }
+    }
+    &__lft {
+      display: flex;
+      align-items: center;
+      img {
+        width: 2.8rem;
+      }
+      &__ttl {
+        font-family: Roboto, sans-serif;
+        font-size: 2rem;
+        color: white;
+        font-weight: 500;
+        margin-left: 12px;
+        letter-spacing: 0.03em;
+      }
+    }
+  }
+  &__mid {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 4rem;
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 4rem;
+    img {
+      width: 23rem;
+      padding-top: 1rem;
+    }
+    &__lft {
+      font-family: oswald;
+      font-size: 4.5rem;
+      text-transform: capitalize;
+      padding-left: 1rem;
+      width: 60%;
+      color: $black;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      span {
+        font-family: oswald !important;
+        font-size: 4.5rem;
+        color: $theme-a !important;
+        // text-transform: uppercase;
+        font-weight: 500 !important;
+        letter-spacing: 0.03em;
+      }
+    }
+  }
+}
+
+.address {
+  padding: 16px;
+}
+

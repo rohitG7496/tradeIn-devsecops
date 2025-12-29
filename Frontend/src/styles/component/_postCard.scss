@@ -1,0 +1,83 @@
+.card{
+  // padding: 8px;
+  // border: 2px solid $border-color;
+  cursor: pointer;
+  position: relative;
+  &__star{
+    position: absolute;
+    right: 2px;
+    margin-top: 2px;
+    color: #f7ff0c;
+    font-size: 32px !important;
+  }
+  &:hover{
+    .card__img{
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      img{
+        transform: scale(1.02);
+      }
+    }
+  }
+  &__top{
+    &__hd{
+      background: $pink;
+      width: max-content;
+      padding: 4px 8px;
+      font-family: oswald,sans-serif;
+      font-weight: 500;
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+      color: white;
+    }
+  }
+  &__btm{
+    display: flex;
+    align-items: flex-start;
+    padding: 8px;
+    justify-content: space-between;
+    &__lft{
+      &__price{
+        font-family: Roboto,sans-serif;
+        font-weight: 500;
+        font-size: 1.2rem;
+        letter-spacing: 0.03em;
+        color: $black;
+        // margin: 8px 0;
+      }
+      &__ship{
+        font-family: Roboto,sans-serif;
+        font-weight: 400;
+        font-size: 0.75rem;
+        letter-spacing: 0.03em;
+        color: $black;
+        width: max-content;
+        background-color: $background;
+        padding: 6px 10px;
+        margin-top: 4px;
+        // margin: 8px 0;
+      }
+    }
+  }
+  &__ttl{
+    font-family: Roboto,sans-serif;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: 0.03em;
+      color: $black;
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      margin-bottom: 8px;
+      -webkit-box-orient: vertical;
+      word-wrap: anywhere;
+  }
+  &__img{
+    height: 10rem;
+    img{height: 100%;
+      width: 100%;
+      object-fit: cover;
+      filter: brightness(0.95);
+      border-radius: 3px;}
+  }
+}

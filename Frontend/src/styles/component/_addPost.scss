@@ -1,0 +1,383 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.MuiSelect-select {
+  border: none !important;
+}
+
+.MuiSelect-outlined.MuiSelect-outlined {
+  // padding-right: 185px !important;
+}
+// .MuiOutlinedInput-input {
+  // padding: 9.5px 10px !important;
+// }
+
+.outer1 {
+  background: $background;
+  padding: 3rem;
+  padding-top: 0.5rem;
+  &__headings {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      font-family: Roboto, sans-serif;
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: $black;
+      margin-bottom: 0;
+      padding-top: 0.65rem;
+      padding-bottom: 15px;
+    }
+    h3 {
+      letter-spacing: 0.03em;
+      font-family: Roboto, sans-serif;
+      padding-top: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: $black;
+      h3{
+        font-family: Roboto, sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        color: $black;
+      }
+      span {
+        color: $theme-a;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        font-family: Roboto, sans-serif !important;
+        &:hover{
+          border-bottom: 1px solid $theme-a;
+        }
+      }
+    }
+  }
+
+  &__sell {
+    border: 1px solid $light-grey;
+    background: white;
+
+    &__lt {
+      padding: 16px;
+      &__heading1 {
+        display: flex;
+        align-items: center;
+        h3{
+          font-weight: 500;
+          font-size: 0.875rem;
+          letter-spacing: 0.03em;
+          color: $light-grey;
+        }
+      }
+      form {
+        border-right: 1px solid #d2d2d2;
+      }
+
+      &__outer {
+        display: flex;
+        justify-content: space-between;
+
+        &__subcate {
+          &__tf {
+            padding-top: 10px !important;
+            input{
+              padding:8px 14px;
+            }
+          }
+        }
+        &__brand {
+          padding-left: 4px;
+          width: 18vw;
+        }
+      }
+      &__btn {
+        button {
+          background: $theme-a !important;
+          padding: 8px 50px !important;
+          margin-top: 10px;
+          border-radius: 4px !important;
+          span {
+            color: white;
+            font-family: Oswald !important;
+            letter-spacing: 0.04em !important;
+            font-weight: 500 !important;
+            font-size: 1.125rem;
+            border-radius: 4px !important;
+          }
+        }
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+      &__img {
+        p {
+          letter-spacing: 0.03em;
+          font-size: 0.85rem;
+          font-weight: 500;
+          padding-bottom: 1.2rem;
+          font-family: Roboto, sans-serif;
+          color: $light-grey;
+        }
+        &__sel {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          &__bdr {
+            border: 1px dashed black;
+            width: 8rem;
+            height: 8rem;
+            margin-bottom: 1.4rem;
+            &__crc {
+              width: 100%;
+              height: 100%;
+              position: relative;
+              .MuiButton-root {
+                position: absolute;
+                top: 36%;
+                left: 36%;
+                min-width: auto !important;
+                padding: 4px;
+                background: $background;
+                border-radius: 50%;
+              }
+              &__close {
+                position: absolute;
+                top: -11px;
+                right: -11px;
+                cursor: pointer;
+              }
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__rt {
+      padding: 16px 16px 16px 8px;
+      &__box {
+        background: $background;
+        margin-top: 5px;
+        &__coin {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-top: 12px;
+          h1 {
+            font-family: Roboto, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: $black;
+            margin-bottom: 0;
+            padding-bottom: 12px;
+            padding-left: 10px;
+          }
+          &__icon {
+            .MuiSvgIcon-root {
+              font-size: 2.5rem !important;
+              color: #ffef00 !important;
+            }
+          }
+        }
+        h2 {
+          text-align: center;
+          padding-bottom: 8px;
+          font-weight: 600;
+          letter-spacing: 0.01em;
+          color: $black;
+          margin-bottom: 0;
+          font-family: Roboto, sans-serif;
+        }
+      }
+      h3 {
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        color: $black;
+        padding-top: 1.2rem;
+        font-size: 1.5rem;
+        font-family: Roboto, sans-serif;
+      }
+      &__radio {
+        display: flex;
+        padding-bottom: 1.1rem;
+        padding-top: 1rem;
+        &__lt1 {
+          &__hr {
+            hr {
+              color: #d2d2d2 !important;
+              width: 34vw;
+            }
+          }
+        }
+        &__rt1 {
+          &__con {
+            display: flex;
+            &__heading3 {
+              h4 {
+                font-weight: 500;
+                letter-spacing: 0.01em;
+                color: $black;
+                font-size: 1.11rem;
+                padding-left: 10px;
+                font-family: Roboto, sans-serif;
+              }
+            }
+          }
+        }
+      }
+
+      &__more {
+        p {
+          color: #9e9e9e;
+          letter-spacing: 0.03em;
+          font-size: 0.85rem;
+          font-weight: 500;
+          padding-left: 2.4rem;
+          padding-bottom: 2rem;
+          font-family: Roboto, sans-serif;
+          border-bottom: 1px solid #d2d2d2;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .outer1 {
+    padding: 0;
+    &__headings {
+      padding: 0 16px;
+      h1 {
+        font-size: 1.21rem;
+      }
+      h3 {
+        font-size: 1rem;
+        padding-top: 0.75rem;
+      }
+    }
+    &__sell {
+      border: none;
+      &__lt {
+        form {
+          border-right: none;
+        }
+        &__heading1 {
+          h3 {
+            font-size: 0.969rem;
+            padding-top: 2px;
+          }
+        }
+      }
+      &__rt {
+        padding: 28px;
+
+        &__radio {
+          &__lt1 {
+            &__hr {
+              hr {
+                width: 0;
+              }
+            }
+          }
+          &__rt1 {
+            &__con {
+              &__heading3 {
+                h4 {
+                  font-size: 1.11rem;
+                  font-weight: 500;
+                }
+              }
+            }
+          }
+        }
+        &__more {
+          p {
+            padding-left: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .outer1 {
+    &__headings {
+      padding: 0 8px;
+
+      h1 {
+        font-size: 0.95rem;
+      }
+      h3 {
+        font-size: 0.6rem;
+        padding-top: 0.85rem;
+      }
+    }
+    &__sell {
+      &__lt {
+        padding: 8px;
+        &__heading1 {
+          h3 {
+            font-size: 0.59rem;
+            padding-top: 7px;
+          }
+        }
+        &__img {
+          &__sel {
+            justify-content: center;
+            align-items: center;
+            &__bdr {
+              margin-right: 1rem;
+            }
+          }
+        }
+        &__more {
+          p {
+            padding-left: 1.2rem;
+          }
+        }
+      }
+      &__rt {
+        padding: 16px;
+        h3 {
+          font-size: 1.25rem;
+        }
+        &__box {
+          &__coin {
+            h1 {
+              font-size: 1.8rem;
+            }
+            &__icon {
+              .MuiSvgIcon-root {
+                font-size: 2.1rem !important;
+              }
+            }
+          }
+          h2 {
+            font-size: 1.3rem;
+          }
+        }
+        &__radio {
+          &__rt1 {
+            &__con {
+              padding-top: 0.3rem;
+              &__heading3 {
+                h4 {
+                  font-size: 0.9rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

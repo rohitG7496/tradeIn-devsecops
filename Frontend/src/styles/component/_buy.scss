@@ -1,0 +1,51 @@
+.buy{
+    padding: 12px;
+    margin-top: 1rem;
+    &__filter{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 68px;
+        &__form{
+            // z-index: -1;
+        }
+        &__select{
+            border-radius: 0;
+            padding: 0 !important;
+        }
+    }
+    &__head{
+        font-family: Roboto, sans-serif;
+        font-size: 2.6rem;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        color: $black;
+        position: absolute;
+        top: 3.5rem;
+        z-index: -1;
+        left: 8px;
+
+        span{
+            font-family: Roboto, sans-serif !important;
+            font-size: 1.2rem !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.03em !important;
+            color: $dark-grey !important;
+        }
+    }
+}
+
+.MuiSelect-select{
+    padding: 8px 28px 8px 12px !important;
+    &:focus{
+        background-color: white !important;
+    }
+}
+
+@media (max-width: 991px){
+    .buy{
+        &__head{
+            font-size: 1.4rem !important;
+        }
+    }
+}

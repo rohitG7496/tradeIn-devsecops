@@ -1,0 +1,141 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.title {
+  padding: 8px 16px !important;
+  h2 {
+    font-weight: 600;
+    font-family: Roboto, sans-serif;
+    font-size: 2rem;
+  }
+}
+
+.qmodal {
+  &__cnfm {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+    letter-spacing: 0.03em;;
+  }
+  &__inner {
+    position: relative;
+    background: $background;
+    border: 1px solid $border-color;
+    padding-left: 1.1rem;
+    margin-left: 2.2rem;
+    margin-right: 2.2rem;
+    height: 61vh;
+    margin-bottom: 1.3rem;
+    padding-top: 0.5rem;
+    h3 {
+      color: $light-grey;
+    }
+  }
+  &__buttons {
+    // position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    // margin-right: 1.2rem;
+    // bottom: 18px;
+    // right: 2px;
+    &__cancel {
+      button {
+        background: $light-grey !important;
+        padding: 8px 36px !important;
+        margin-right: 1.2rem;
+        border-radius: 4px !important;
+        span {
+          color: white;
+          font-family: Oswald !important;
+          letter-spacing: 0.04em !important;
+          font-weight: 500 !important;
+          font-size: 1.125rem;
+          border-radius: 4px !important;
+        }
+      }
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+    &__save {
+      button {
+        background: $theme-a;
+        padding: 8px 36px !important;
+        margin-right: 24px;
+        border-radius: 4px !important;
+
+        span {
+          color: white;
+          font-family: Oswald !important;
+          letter-spacing: 0.04em !important;
+          font-weight: 500 !important;
+          font-size: 1.125rem;
+        }
+      }
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .qmodal {
+    &__inner {
+      height: 21rem;
+      margin-left: 1.4rem;
+      margin-right: 1.4rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .title {
+    h2 {
+      font-size: 1.6rem;
+    }
+  }
+
+  .qmodal {
+    &__inner {
+      height: 65vh;
+      margin-left: 1.4rem;
+      margin-right: 1.4rem;
+      h3 {
+        font-size: 0.85rem;
+      }
+    }
+    &__buttons {
+      display: flex;
+      padding: 0 0;
+      margin: 0 0;
+      left: 0.5rem;
+      // justify-content: space-between !important;
+      &__cancel {
+        width: 100%;
+        margin-right: 2px;
+        button {
+          width: 100% !important;
+          // padding:8px 20px !important;
+          margin-right: 0;
+        }
+        padding: 0 0 !important;
+      }
+      &__save {
+        width: 100%;
+        padding: 0 0 !important;
+        margin-left: 12px;
+        margin-right: 8px;
+        button {
+          width: 100% !important;
+          font-size: 0.7rem;
+          // padding:8px 20px !important;
+          // margin-right: 0 !important;
+        }
+      }
+    }
+  }
+}
