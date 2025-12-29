@@ -1,14 +1,12 @@
-version: "3.8"
-
 services:
   db:
     image: mysql:8.0
     restart: always
     environment:
       MYSQL_DATABASE: tradein_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Rohit@123
+      MYSQL_ROOT_PASSWORD: Rohit@123
     ports:
       - "3306:3306"
     volumes:
@@ -30,13 +28,13 @@ services:
       - SECRET_KEY=django-insecure-test-key-change-in-prod
       - DEBUG=1
       - DB_NAME=tradein_db
-      - DB_USER=user
-      - DB_PASSWORD=password
-      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=Rohit@123
+      - DB_HOST=mysql
       - DB_PORT=3306
-      - CLOUD_NAME=your_cloud_name
-      - API_KEY=your_api_key
-      - API_SECRET=your_api_secret
+      - CLOUD_NAME=aws
+      - API_KEY=YLBrAKaRzRrhiG1sZZWfI4q7zXY
+      - API_SECRET=mdKRuiX-1wEirv8KGo-_ETuGdBA1UET0N28ZvNBT5wH8glqYC8plYg
     depends_on:
       db:
         condition: service_healthy
