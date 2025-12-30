@@ -22,17 +22,8 @@ services:
       - ./Backend:/app
     ports:
       - "8000:8000"
-    environment:
-      - SECRET_KEY=django-insecure-test-key-change-in-prod
-      - DEBUG=1
-      - DB_NAME=tradein_db
-      - DB_USER=root
-      - DB_PASSWORD=Rohit@123
-      - DB_HOST=db
-      - DB_PORT=3306
-      - CLOUD_NAME=aws
-      - API_KEY=YLBrAKaRzRrhiG1sZZWfI4q7zXY
-      - API_SECRET=mdKRuiX-1wEirv8KGo-_ETuGdBA1UET0N28ZvNBT5wH8glqYC8plYg
+    env_file:
+      - ./Backend/.env
     depends_on:
       db:
         condition: service_healthy
