@@ -4,8 +4,6 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: tradein_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Rohit@123
       MYSQL_ROOT_PASSWORD: Rohit@123
     ports:
       - "3306:3306"
@@ -30,7 +28,7 @@ services:
       - DB_NAME=tradein_db
       - DB_USER=root
       - DB_PASSWORD=Rohit@123
-      - DB_HOST=mysql
+      - DB_HOST=db
       - DB_PORT=3306
       - CLOUD_NAME=aws
       - API_KEY=YLBrAKaRzRrhiG1sZZWfI4q7zXY
