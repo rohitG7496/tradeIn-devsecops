@@ -61,7 +61,7 @@ export const getAllBrands = () => {
       "GET",
       `${AllBrands}`,
       null,
-      null 
+      null
     );
     if (res && res.status === 200) {
       await dispatch(allBrands(res.data));
@@ -81,6 +81,7 @@ export const CreateNewPost = (data) => {
       const res = await Request("POST", CreatePost, token, data);
       console.log(res)
       if (res && res.status == 201) {
+        await dispatch(addPostDetails(res.data));
         await dispatch(CreatePostSuccess(true, res.data.id));
         await dispatch(openSnackbar("Post Created successfully"));
       } else {
@@ -103,6 +104,7 @@ export const editPost = (data) => {
       data["user"] = user;
       const res = await Request("PUT", PostEdit, token, data);
       if (res && res.status == 200) {
+        await dispatch(addPostDetails(res.data));
         await dispatch(CreatePostSuccess(true, res.data.id));
         await dispatch(openSnackbar("Post edited successfully"));
       } else {
@@ -141,7 +143,7 @@ export const retrieveAllPost = (
       "GET",
       `${RetrieveAllPost}?category=${category}&subcategory=${subcategory}&brand=${brand}&color=${color}&min=${min}&max=${max}&state=${status}&condition=${condition}&barter=${barter}&donate=${donate}&sort=${sort}`,
       null,
-      null 
+      null
     );
     if (res && res.status === 200) {
       await dispatch(addAllPostDetails(res.data));
@@ -170,9 +172,9 @@ export const noPostDetails = (loading, success) => {
   };
 };
 
-export const retrievePost = (postId) => {
+export const retrievePost = (postId, forceFetch = false) => {
   return async (dispatch, getState) => {
-    if (postId in getState().post.posts == false) {
+    if (forceFetch || (postId in getState().post.posts == false)) {
       await dispatch(getToken());
       const token = await getState().token.access;
       const res = await Request("GET", `${RetrievePost}?id=${postId}`, token);

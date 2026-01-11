@@ -21,14 +21,14 @@ class PostSerializer(serializers.ModelSerializer):
 
     def is_valid_form(self,validate_data):
         print(validate_data)
-        self.ValidatePrice(validate_data['price'],validate_data['is_barter'],validate_data['is_donate'])
-        self.ValidateTitle(validate_data['title'])
-        self.ValidateDescription(validate_data['description'])
-        self.ValidateCategory(validate_data['category'])
-        self.ValidateSubCategory(validate_data['subcategory'])
-        self.ValidateBrand(validate_data['brand'])
-        self.ValidateColor(validate_data['color'])
-        self.ValidateCondition(validate_data['condition'])
+        self.ValidatePrice(validate_data.get('price'),validate_data.get('is_barter'),validate_data.get('is_donate'))
+        self.ValidateTitle(validate_data.get('title'))
+        self.ValidateDescription(validate_data.get('description'))
+        self.ValidateCategory(validate_data.get('category'))
+        self.ValidateSubCategory(validate_data.get('subcategory'))
+        self.ValidateBrand(validate_data.get('brand'))
+        self.ValidateColor(validate_data.get('color'))
+        self.ValidateCondition(validate_data.get('condition'))
         return True
 
     

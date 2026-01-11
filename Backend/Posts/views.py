@@ -42,6 +42,85 @@ def timesince_calulate(date,time):
             else:
                 timesince="{} mins ago".format(datetime.now().minute-time.minute)
     return timesince
+ 
+def get_full_post_data(post, myself=None):
+    is_reserved = False
+    reserve_expire_date = None
+    expire_time = None
+    
+    if myself:
+        try:
+            reserve = Reserve.objects.filter(reserve_product=post, user=myself).first()
+            if reserve and reserve.expire_date >= timezone.now():
+                is_reserved = True
+                reserve_expire_date = reserve.expire_date.date().strftime("%B %d, %Y")
+                expire_time = reserve.expire_date.time()
+        except Exception:
+            pass
+
+    is_owner = False
+    if myself and myself.user_id == post.user.user_id:
+        is_owner = True
+        
+    user = post.user
+    save = None
+    if myself:
+        try:
+            save = SavedPost.objects.filter(post=post, user=myself).first()
+        except Exception:
+            pass
+
+    post_question = PostQuestion.objects.filter(post=post)
+    post_images = []
+    questions = []
+    
+    images = PostImage.objects.filter(post=post)
+    for img in images:
+        post_images.append(img.image)
+        
+    for que in post_question:
+        questions.append({
+            'id': que.id,
+            'question': que.question,
+            'user': que.user.user_id,
+            'is_answered': que.is_answered,
+            'answer': que.answer
+        })
+
+    return {
+        'title': post.title,
+        'description': post.description,
+        'condition': post.condition,
+        'id': post.id,
+        'price': post.price,
+        'category': post.category,
+        'subcategory': post.subcategory,
+        'color': post.color,
+        'date': post.date,
+        'is_donate': post.is_donate,
+        'user_id': user.user_id,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'user_image': user.image,
+        'brand': post.brand,
+        'address': user.address,
+        'phone': user.phone,
+        'pincode': user.pincode,
+        'email': user.email,
+        'genre': post.genre,
+        'city': user.city,
+        'is_sold': post.is_sold,
+        'is_barter': post.is_barter,
+        'district': user.district,
+        'is_owner': is_owner,
+        'is_saved': (save is not None),
+        'images': post_images,
+        'questions': questions,
+        'is_reserved': is_reserved,
+        'is_premium': post.is_premium,
+        'reserved_expire_date': reserve_expire_date,
+        'reserved_expire_time': expire_time,
+    }
 
 class PostCreateView(APIView):
     serializer_class=PostSerializer
@@ -72,21 +151,23 @@ class PostCreateView(APIView):
             return Response("Please complete your profile",status=status.HTTP_204_NO_CONTENT)
         if post_serializer.is_valid() and post_serializer.is_valid_form(request.data):
             post_serializer.save()
-            if request.data["is_premium"]:
+            is_premium = request.data.get("is_premium")
+            if is_premium == "true" or is_premium is True:
                 Profile.objects.filter(user_id = request.data["user"]).update(coins = max(0,user.coins-250));
             else:
                 Profile.objects.filter(user_id = request.data["user"]).update(coins = user.coins+50);
-            data=post_serializer.data
+            
+            # Fetch full post data to return
+            created_post = Post.objects.get(id=post_serializer.instance.id)
             for img in imagearray:
                 try:
-                    post = Post.objects.get(id=data['id'])
-                    new_image=PostImage.objects.create(post=post,image=img)
+                    new_image=PostImage.objects.create(post=created_post,image=img)
                     PostImageSerializer(new_image)
                 except:
                     for img in imagearray:    
                         cloudinary.uploader.destroy(img,invalidate=True)    
                     return Response("Something went wrong", status=status.HTTP_400_BAD_REQUEST)    
-            data["images"]=imagearray    
+            data = get_full_post_data(created_post, user)
             return Response(data,status=status.HTTP_201_CREATED)
         for img in imagearray:    
             cloudinary.uploader.destroy(img,invalidate=True)    
@@ -116,9 +197,13 @@ class PostEditView(APIView):
         post_update_serializer=PostSerializer(post,data=request.data)  
         if post_update_serializer.is_valid() and post_update_serializer.is_valid_form(request.data):
             post_update_serializer.save()
-            if request.data["is_premium"]:
+            is_premium = request.data.get("is_premium")
+            if is_premium == "true" or is_premium is True:
                 Profile.objects.filter(user_id = request.data["user"]).update(coins = max(0,user_data.coins-300));
-            data=post_update_serializer.data
+            
+            # Fetch full post data to return
+            updated_post = Post.objects.get(id=post.id)
+            data = get_full_post_data(updated_post, user_data)
             return Response(data,status=status.HTTP_200_OK)
         return Response(post_update_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 
@@ -254,71 +339,7 @@ class SinglePostRetriveView(APIView):
            
 
        
-        is_owner = False
-        if payload:
-            if payload['user_id'] == post.user_id:
-                is_owner = True
-        user = Profile.objects.get(user_id=post.user)
-        save = None
-       
-        try:
-            save=SavedPost.objects.get(post=post_id,user=myself)
-        except:
-            save = None    
-
-        
-
-        post_question=PostQuestion.objects.filter(post=post_id)
-        print("save",save)
-        post_images=[]
-        questions=[]
-        data={}
-        images=PostImage.objects.filter(post=post_id)
-        for img in images:
-            post_images.append(img.image)
-        for que in post_question:
-            obj={}
-            obj['id']=que.id
-            obj['question']=que.question
-            obj['user']=que.user.user_id
-            obj['is_answered']=que.is_answered
-            obj['answer']=que.answer
-            questions.append(obj)
-           
-        data['title']=post.title
-        data['description']=post.description
-        data['condition']=post.condition
-        data['id']=post.id
-        data['price']=post.price
-        data['category']=post.category
-        data['subcategory']=post.subcategory
-        data['color']=post.color
-        data['date']=post.date
-        data['is_donate']=post.is_donate
-        data['user_id']=user.user_id
-        data['first_name']=user.first_name
-        data['last_name']=user.last_name
-        data['user_image']=user.image
-        data['brand']=post.brand
-        data['address']=user.address
-        data['phone']=user.phone
-        data['pincode']=user.pincode
-        data['email']=user.email
-        data['genre']=post.genre
-        data['city']=user.city
-        data['is_sold']=post.is_sold
-        data['is_barter']=post.is_barter
-        data['is_donate']=post.is_donate
-        data['district']=user.district
-        data['is_owner']=is_owner
-        data['is_saved']=(save!=None)
-        data['images']=post_images
-        data['questions']=questions
-        data['is_reserved']=is_reserved
-        data["is_premium"] = post.is_premium
-        data['reserved_expire_date']= reserve_expire_date
-        data['reserved_expire_time']=expire_time
-        
+        data = get_full_post_data(post, myself)
         return Response(data,status=status.HTTP_200_OK)
 
 

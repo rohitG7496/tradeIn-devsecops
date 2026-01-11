@@ -36,7 +36,7 @@ class Sell extends Component {
 			title: "",
 			desc: "",
 			brand: "",
-			premium: "false",
+			is_premium: "false",
 			loading: false,
 			price: "",
 			formValid: false,
@@ -608,8 +608,8 @@ class Sell extends Component {
 								>
 									<FormControl component="fieldset">
 										<RadioGroup
-											name="premium"
-											value={this.state.premium}
+											name="is_premium"
+											value={this.state.is_premium}
 											onChange={this.onHandleChange}
 										>
 											<FormControlLabel

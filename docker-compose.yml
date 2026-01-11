@@ -4,6 +4,8 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: tradein_db
+      MYSQL_USER: tradein
+      MYSQL_PASSWORD: Rohit@123
       MYSQL_ROOT_PASSWORD: Rohit@123
     ports:
       - "3306:3306"
@@ -17,7 +19,7 @@ services:
   backend:
     build:
       context: ./Backend
-    command: gunicorn Backend.wsgi:application --bind 0.0.0.0:8000
+    command: sh -c "python manage.py migrate && gunicorn Backend.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - ./Backend:/app
     ports:

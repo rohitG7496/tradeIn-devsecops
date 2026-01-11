@@ -1,7 +1,7 @@
 export const PostImageUrl =
-  "https://res.cloudinary.com/tradein/image/upload/v1634651417/";
+  "https://res.cloudinary.com/dvn5bzt5i/image/upload/";
 export const ProfileImageUrl =
-  "http://res.cloudinary.com/tradein/image/upload/v1635581673/";
+  "https://res.cloudinary.com/dvn5bzt5i/image/upload/";
 
 // login
 export const UserLogin = "user/login/";

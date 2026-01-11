@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.http import JsonResponse
+
+def root_view(request):
+    return JsonResponse({"message": "TradeIn Backend API is running. Use /api/ for endpoints."})
 
 urlpatterns = [
+    path('', root_view),
     path('admin/', admin.site.urls),
     path('api/',include('Profile.urls',namespace="profile")),
     path('api/post/',include('Posts.urls',namespace="post")),

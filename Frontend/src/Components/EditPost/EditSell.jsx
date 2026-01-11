@@ -41,7 +41,7 @@ class EditSell extends Component {
 			title: this.props.post.title || "",
 			desc: this.props.post.description || "",
 			brand: this.props.post.brand || "",
-			premium: "false",
+			is_premium: "false",
 			loading: false,
 			price: this.props.post.price || "",
 			formValid: true,
@@ -178,7 +178,7 @@ class EditSell extends Component {
 			title: this.state.title,
 			description: this.state.desc,
 			brand: this.state.brand,
-			premium: this.state.premium,
+			is_premium: this.state.is_premium,
 			price: this.state.price,
 			is_barter: false,
 			is_donate: false,
@@ -590,8 +590,8 @@ class EditSell extends Component {
 								>
 									<FormControl component="fieldset">
 										<RadioGroup
-											name="premium"
-											value={this.state.premium}
+											name="is_premium"
+											value={this.state.is_premium}
 											onChange={this.onHandleChange}
 										>
 											<FormControlLabel
@@ -680,7 +680,7 @@ const mapStateToProps = (state, ownProps) => {
 		postId: state.post.postId,
 		post:
 			ownProps.computedMatch.params.id &&
-			ownProps.computedMatch.params.id in state.post.posts
+				ownProps.computedMatch.params.id in state.post.posts
 				? state.post.posts[ownProps.computedMatch.params.id]
 				: {},
 	};

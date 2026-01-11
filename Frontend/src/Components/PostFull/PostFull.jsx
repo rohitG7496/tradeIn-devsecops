@@ -311,12 +311,12 @@ class PostFull extends Component {
               </h5>
               <div className="product__lt__Box">
                 <div className="product__lt__Box__imageWrapper">
-                  {post.images.map((item, index) => (
+                  {post.images && post.images.map((item, index) => (
                     <div
                       className="product__lt__Box__imageWrapper__pic"
                       style={{
                         paddingBottom:
-                          selected == post.images.length ? "0" : "1.4rem",
+                          selected == (post.images ? (post.images ? post.images.length : 0) : 0) ? "0" : "1.4rem",
                       }}
                     >
                       <a herf="#pic1">
@@ -330,7 +330,7 @@ class PostFull extends Component {
                   ))}
                 </div>
                 <div className="product__lt__Box__outer">
-                  <img src={PostImageUrl + "" + post.images[selected]} />
+                  <img src={PostImageUrl + "" + (post.images ? (post.images ? (post.images ? post.images[selected] : "") : null) : "")} />
                   <div className="product__Box__outer__icons">
                     {selected > 0 && (
                       <div className="product__lt__Box__outer__icons__icon1">
@@ -343,7 +343,7 @@ class PostFull extends Component {
                         </IconButton>
                       </div>
                     )}
-                    {selected < post.images.length - 1 && (
+                    {selected < (post.images ? (post.images ? post.images.length : 0) : 0) - 1 && (
                       <div className="product__lt__Box__outer__icons__icon2">
                         <IconButton
                           onClick={() =>
@@ -492,13 +492,13 @@ class PostFull extends Component {
                       </RadioGroup>
                     </div>
                   )}
-                  {post.questions.length == 0 && (
+                  {post.questions && (post.questions ? (post.questions ? post.questions.length : 0) : 0) == 0 && (
                     <div className="product__lt__ques__empty">
                       <img src={NoQuestionImage} />
                       <h3>Nothing to show!</h3>
                     </div>
                   )}
-                  {post.questions.map((obj, index) => {
+                  {post.questions && post.questions.map((obj, index) => {
                     if (
                       sort == "all" ||
                       (sort == "my" &&
@@ -772,7 +772,7 @@ class PostFull extends Component {
               </h5>
               <div className="product__lt__Box">
                 <div className="product__lt__Box__outer">
-                  <img src={PostImageUrl + "" + post.images[selected]} />
+                  <img src={PostImageUrl + "" + (post.images ? (post.images ? (post.images ? post.images[selected] : "") : null) : "")} />
                   <div className="product__Box__outer__icons">
                     {selected > 0 && (
                       <div className="product__lt__Box__outer__icons__icon1">
@@ -785,7 +785,7 @@ class PostFull extends Component {
                         </IconButton>
                       </div>
                     )}
-                    {selected < post.images.length - 1 && (
+                    {selected < (post.images ? (post.images ? post.images.length : 0) : 0) - 1 && (
                       <div className="product__lt__Box__outer__icons__icon2">
                         <IconButton
                           onClick={() =>
@@ -799,12 +799,12 @@ class PostFull extends Component {
                   </div>
                 </div>
                 <div className="product__lt__Box__imageWrapper">
-                  {post.images.map((item, index) => (
+                  {post.images && post.images.map((item, index) => (
                     <div
                       className="product__lt__Box__imageWrapper__pic"
                       style={{
                         paddingBottom:
-                          selected == post.images.length ? "0" : "1.4rem",
+                          selected == (post.images ? (post.images ? post.images.length : 0) : 0) ? "0" : "1.4rem",
                       }}
                     >
                       <a herf="#pic1">
@@ -1095,13 +1095,13 @@ class PostFull extends Component {
                       </RadioGroup>
                     </div>
                   )}
-                  {post.questions.length == 0 && (
+                  {post.questions && (post.questions ? (post.questions ? post.questions.length : 0) : 0) == 0 && (
                     <div className="product__lt__ques__empty">
                       <img src={NoQuestionImage} />
                       <h3>Nothing to show!</h3>
                     </div>
                   )}
-                  {post.questions.map((obj, index) => {
+                  {post.questions && post.questions.map((obj, index) => {
                     if (
                       sort == "all" ||
                       (sort == "my" &&
