@@ -33,7 +33,11 @@ class PostSerializer(serializers.ModelSerializer):
 
     
     def ValidatePrice(self,price,is_barter,is_donate):
-        if is_barter or is_donate:
+        # Handle string booleans from FormData
+        is_barter_bool = is_barter == True or is_barter == "true"
+        is_donate_bool = is_donate == True or is_donate == "true"
+        
+        if is_barter_bool or is_donate_bool:
             return price
         if price == "":
             raise serializers.ValidationError("Invalid price.")

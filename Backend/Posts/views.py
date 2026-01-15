@@ -197,6 +197,24 @@ class PostEditView(APIView):
         post_update_serializer=PostSerializer(post,data=request.data)  
         if post_update_serializer.is_valid() and post_update_serializer.is_valid_form(request.data):
             post_update_serializer.save()
+            imagearray = []
+            if 'img1' in request.data and request.data['img1'] != "undefined" and request.data['img1'] != "null":
+                upload_data = cloudinary.uploader.upload(request.data['img1'], folder="post")
+                imagearray.append(upload_data['public_id'])
+            if 'img2' in request.data and request.data['img2'] != "undefined" and request.data['img2'] != "null":
+                upload_data = cloudinary.uploader.upload(request.data['img2'], folder="post")
+                imagearray.append(upload_data['public_id'])
+            if 'img3' in request.data and request.data['img3'] != "undefined" and request.data['img3'] != "null":
+                upload_data = cloudinary.uploader.upload(request.data['img3'], folder="post")
+                imagearray.append(upload_data['public_id'])
+            if 'img4' in request.data and request.data['img4'] != "undefined" and request.data['img4'] != "null":
+                upload_data = cloudinary.uploader.upload(request.data['img4'], folder="post")
+                imagearray.append(upload_data['public_id'])
+
+            for image in imagearray:
+                postimage = PostImage(post=post, image=image)
+                postimage.save()
+            
             is_premium = request.data.get("is_premium")
             if is_premium == "true" or is_premium is True:
                 Profile.objects.filter(user_id = request.data["user"]).update(coins = max(0,user_data.coins-300));
@@ -300,7 +318,7 @@ class PostUserRetriveView(APIView):
         return Response(data,status=status.HTTP_200_OK)
 
 class SinglePostRetriveView(APIView):
-    permission_classes=[AllowAny]
+    permission_classes = [AllowAny]
     serializer_class=PostSerializer
     def get(self,request):
         authorization_header = request.headers.get('Authorization')
@@ -404,7 +422,7 @@ class PostRetriveView(APIView):
             temp['is_barter'] = post.is_barter
             temp["is_premium"] = post.is_premium
             # temp['is_owner']=(user.user_id==payload['user_id'])
-            temp['image']=len(post_images)>0 and post_images[0]
+            temp['image']=post_images[0] if post_images else ""
             temp_data.append(temp)
         for  item in temp_data:
             if item['is_premium']:
@@ -417,6 +435,7 @@ class PostRetriveView(APIView):
 
 
 class PostSavedView(APIView):
+    permission_classes = [AllowAny]
     serializer_class=PostSavedSerializer
     def post(self,request):
         post_id=request.data['post']
@@ -427,41 +446,43 @@ class PostSavedView(APIView):
             try:
                 user_data=Profile.objects.get(user_id=user_id)
             except Profile.DoesNotExist:
-                return Response("user doesn't exists",status=status.HTTP_204_NO_CONTENT)  
+                return Response("user doesn't exists",status=status.HTTP_400_BAD_REQUEST)  
             try:
                 post=Post.objects.get(id=post_id)   
             except Post.DoesNotExist:
-                return Response("post doesn't exists",status=status.HTTP_204_NO_CONTENT)
-            try:
-                save=SavedPost.objects.get(post=post_id,user=post.user)
-                return Response("Post already saved",status=status.HTTP_204_NO_CONTENT)
-            except:
-                pass    
-            if post_saved_serializer.is_valid() :
+                return Response("post doesn't exists",status=status.HTTP_400_BAD_REQUEST)
+            
+            if SavedPost.objects.filter(post=post_id, user=user_id).exists():
+                return Response("Post already saved",status=status.HTTP_200_OK)
+            
+            if post_saved_serializer.is_valid():
                 post_saved_serializer.save()
                 return Response("saved",status=status.HTTP_200_OK)
             return Response(post_saved_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
         elif verb=="unsave":
             try:
                 user_data=Profile.objects.get(user_id=user_id)
             except Profile.DoesNotExist:
-                return Response("user doesn't exists",status=status.HTTP_204_NO_CONTENT)  
+                return Response("user doesn't exists",status=status.HTTP_400_BAD_REQUEST)  
             try:
-                post=Post.objects.get(id=post_id)   
-            except Post.DoesNotExist:
-                return Response("post doesn't exists",status=status.HTTP_204_NO_CONTENT)
-            try:
-                post=SavedPost.objects.get(user=user_id,post=post_id)   
-            except SavedPost.DoesNotExist:
-                return Response("post is already unsaved",status=status.HTTP_204_NO_CONTENT)
-            try:
-                SavedPost.objects.filter(user=user_id,post=post_id).delete()
-                return Response("unsaved.",status=status.HTTP_200_OK)
+                post_exists=Post.objects.filter(id=post_id).exists()
+                if not post_exists:
+                     return Response("post doesn't exists",status=status.HTTP_400_BAD_REQUEST)
             except:
-                return Response("Something went wrong",status=status.HTTP_204_NO_CONTENT)
+                 pass
+
+            try:
+                saved_post=SavedPost.objects.get(user=user_id,post=post_id)   
+                saved_post.delete()
+                return Response("unsaved.",status=status.HTTP_200_OK)
+            except SavedPost.DoesNotExist:
+                return Response("post is already unsaved",status=status.HTTP_200_OK)
+            except:
+                return Response("Something went wrong",status=status.HTTP_400_BAD_REQUEST)
 
         else:
-            return Response("incorrect verb",status=status.HTTP_204_NO_CONTENT)
+            return Response("incorrect verb",status=status.HTTP_400_BAD_REQUEST)
 
 class PostAnswerView(APIView):
     serializer_class=PostQuestionSerializer
@@ -555,10 +576,10 @@ class StartReservedPayment(APIView):
         username = request.data['username']
         reserve_product = request.data['reserve_product']
 
-        user = Profile.objects.get(user_id=username)
-        post = Post.objects.get(id=reserve_product)
+        user = Profile.objects.filter(user_id=username).first()
+        post = Post.objects.filter(id=reserve_product).first()
 
-        if(user==None or post==None):
+        if not user or not post:
             return Response("Something went wrong", status=status.HTTP_404_NOT_FOUND)
         
         # setup razorpay client
@@ -656,16 +677,15 @@ class StartProductPayment(APIView):
         username = request.data['username']
         order_product = request.data['order_product']
 
-        user = Profile.objects.filter(user_id=username)
-        post = Post.objects.filter(id=order_product, price=amount)
-        try:
-            reserve =Reserve.objects.get(reserve_product=order_product)
+        user = Profile.objects.filter(user_id=username).first()
+        post = Post.objects.filter(id=order_product).first()
+        
+        reserve = Reserve.objects.filter(reserve_product=order_product, user=user).first()
 
-            if(reserve and reserve.expire_date > timezone.now()):
-                amount = amount - 10
-        except:
-            pass        
-        if(user==None or post==None):
+        if reserve and reserve.expire_date > timezone.now():
+            amount = int(amount) - 10
+               
+        if not user or not post:
             return Response("Something went wrong", status=status.HTTP_404_NOT_FOUND)
         # setup razorpay client
         client = razorpay.Client(auth=(os.environ.get("RAZORPAY_PUBLIC_KEY"), os.environ.get("RAZORPAY_SECRET_KEY")))

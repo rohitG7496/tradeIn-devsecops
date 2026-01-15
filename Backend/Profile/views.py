@@ -114,6 +114,7 @@ class UserUpdateView(APIView):
         return Response(profile_update_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 
 class GetMyDetailsView(APIView):
+    permission_classes = [AllowAny]
     def get(self,request):
         authorization_header = request.headers.get('Authorization')
         if authorization_header == None:
@@ -152,6 +153,7 @@ class GetMyDetailsView(APIView):
         return Response(temp,status=status.HTTP_200_OK)    
 
 class GetUserDetailsView(APIView):
+    permission_classes = [AllowAny]
     def get(self,request):
         try:
             user = Profile.objects.get(user_id=request.GET['user'])
@@ -198,7 +200,7 @@ class ProfileBuyView(APIView):
                 temp['brand']=post.brand
                 temp['is_donate'] = post.is_donate
                 temp['is_barter'] = post.is_barter
-                temp['image']=post_images[0]
+                temp['image']=post_images[0] if post_images else ""
                 data.append(temp)
         except:    
             return Response("Something went wrong", status=status.HTTP_400_BAD_REQUEST)    
@@ -227,7 +229,7 @@ class ProfileDonateView(APIView):
                 temp['brand']=post.brand
                 temp['is_donate'] = post.is_donate
                 temp['is_barter'] = post.is_barter
-                temp['image']=post_images[0]
+                temp['image']=post_images[0] if post_images else ""
                 data.append(temp)
         except:    
             return Response("Something went wrong", status=status.HTTP_400_BAD_REQUEST)    
@@ -256,7 +258,7 @@ class ProfileExchangeView(APIView):
                 temp['brand']=post.brand
                 temp['is_donate'] = post.is_donate
                 temp['is_barter'] = post.is_barter
-                temp['image']=post_images[0]
+                temp['image']=post_images[0] if post_images else ""
                 data.append(temp)
         except:    
             return Response("Something went wrong", status=status.HTTP_400_BAD_REQUEST)    
@@ -298,7 +300,7 @@ class ProfileOrdersView(APIView):
                 temp['brand']=post.brand
                 temp['is_donate'] = post.is_donate
                 temp['is_barter'] = post.is_barter
-                temp['image']=post_images[0]
+                temp['image']=post_images[0] if post_images else ""
                 data.append(temp)
             except:    
                 return Response("Something went wrong", status=status.HTTP_400_BAD_REQUEST)    
@@ -337,7 +339,7 @@ class ProfileReserveView(APIView):
             # temp['brand']=post.brand
             # temp['is_donate'] = post.is_donate
             # temp['is_barter'] = post.is_barter
-            temp['image']=post_images[0]
+            temp['image']=post_images[0] if post_images else ""
             data.append(temp)
             # except:    
             #     return Response("Something went wrong", status=status.HTTP_400_BAD_REQUEST)    
@@ -372,7 +374,7 @@ class ProfileWishlistView(APIView):
                 temp['brand']=post.brand
                 temp['is_donate'] = post.is_donate
                 temp['is_barter'] = post.is_barter
-                temp['image']=post_images[0]
+                temp['image']=post_images[0] if post_images else ""
                 data.append(temp)
             except:    
                 return Response("Something went wrong", status=status.HTTP_400_BAD_REQUEST)    

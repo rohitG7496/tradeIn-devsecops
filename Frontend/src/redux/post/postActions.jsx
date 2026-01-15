@@ -101,7 +101,11 @@ export const editPost = (data) => {
     const user = await getState().myDetails.myDetails.username;
     // console.log(data);
     if (token && user) {
-      data["user"] = user;
+      if (data instanceof FormData) {
+        data.append("user", user);
+      } else {
+        data["user"] = user;
+      }
       const res = await Request("PUT", PostEdit, token, data);
       if (res && res.status == 200) {
         await dispatch(addPostDetails(res.data));

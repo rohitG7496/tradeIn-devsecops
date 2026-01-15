@@ -18,5 +18,6 @@ class Profile(models.Model):
     def __str__(self):
         return '%s' % (self.user_id)
 
+    @property
     def is_authenticated(self):
-        pass
+        return True

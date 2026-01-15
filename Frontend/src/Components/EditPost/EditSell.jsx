@@ -1,5 +1,6 @@
 import React, { Component, useEffect } from "react";
 import { useState } from "react";
+import { PostImageUrl } from "../../api/pathConstants";
 import { Button, Grid, TextField } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -44,6 +45,10 @@ class EditSell extends Component {
 			is_premium: "false",
 			loading: false,
 			price: this.props.post.price || "",
+			img1: { image: null, file: null },
+			img2: { image: null, file: null },
+			img3: { image: null, file: null },
+			img4: { image: null, file: null },
 			formValid: true,
 			categoryValid: false,
 			fieldValid: {
@@ -65,7 +70,6 @@ class EditSell extends Component {
 	}
 	static getDerivedStateFromProps(props, state) {
 		if (props.post.category != state.category) {
-			// console.log(props.post);
 			return {
 				category: props.post.category || "",
 				subcategory: props.post.subcategory || "",
@@ -75,8 +79,25 @@ class EditSell extends Component {
 				desc: props.post.description || "",
 				brand: props.post.brand || "",
 				price: props.post.price || "",
+				img1: {
+					image: props.post.images && props.post.images[0] ? PostImageUrl + props.post.images[0] : null,
+					file: null,
+				},
+				img2: {
+					image: props.post.images && props.post.images[1] ? PostImageUrl + props.post.images[1] : null,
+					file: null,
+				},
+				img3: {
+					image: props.post.images && props.post.images[2] ? PostImageUrl + props.post.images[2] : null,
+					file: null,
+				},
+				img4: {
+					image: props.post.images && props.post.images[3] ? PostImageUrl + props.post.images[3] : null,
+					file: null,
+				},
 			};
 		}
+		return null;
 	}
 
 	onHandleChange = async (event) => {
@@ -147,44 +168,59 @@ class EditSell extends Component {
 	//  onImageChange = async(e) => {
 	//   const name = e.target.name;
 	//   if (name == "img1")
-	//     await this.setState({img1:{
-	//       image: URL.createObjectURL(e.target.files[0]),
-	//       file: e.target.files[0],
-	//     }},this.validateForm);
-	//   else if (name == "img2")
-	//    await this.setState({img2:{
-	//     image: URL.createObjectURL(e.target.files[0]),
-	//     file: e.target.files[0],
-	//   }},this.validateForm);
-	//   else if (name == "img3")
-	//   await this.setState({img3:{
-	//     image: URL.createObjectURL(e.target.files[0]),
-	//     file: e.target.files[0],
-	//   }},this.validateForm);
-	//   else if (name == "img4")
-	//   await this.setState({img4:{
-	//     image: URL.createObjectURL(e.target.files[0]),
-	//     file: e.target.files[0],
-	//   }},this.validateForm);
+	onImageChange = async (e) => {
+		const name = e.target.name;
+		if (name == "img1")
+			await this.setState({
+				img1: {
+					image: URL.createObjectURL(e.target.files[0]),
+					file: e.target.files[0],
+				},
+			}, this.validateForm);
+		else if (name == "img2")
+			await this.setState({
+				img2: {
+					image: URL.createObjectURL(e.target.files[0]),
+					file: e.target.files[0],
+				},
+			}, this.validateForm);
+		else if (name == "img3")
+			await this.setState({
+				img3: {
+					image: URL.createObjectURL(e.target.files[0]),
+					file: e.target.files[0],
+				},
+			}, this.validateForm);
+		else if (name == "img4")
+			await this.setState({
+				img4: {
+					image: URL.createObjectURL(e.target.files[0]),
+					file: e.target.files[0],
+				},
+			}, this.validateForm);
 
-	// };
+	};
 
 	onHandleSubmit = async () => {
-		const data = {
-			category: this.state.category,
-			subcategory: this.state.subcategory,
-			color: this.state.color,
-			condition: this.state.condn,
-			title: this.state.title,
-			description: this.state.desc,
-			brand: this.state.brand,
-			is_premium: this.state.is_premium,
-			price: this.state.price,
-			is_barter: false,
-			is_donate: false,
-			id: this.props.computedMatch.params.id,
-		};
-		// console.log(data);
+		const data = new FormData();
+		data.append("category", this.state.category);
+		data.append("subcategory", this.state.subcategory);
+		data.append("color", this.state.color);
+		data.append("condition", this.state.condn);
+		data.append("title", this.state.title);
+		data.append("description", this.state.desc);
+		data.append("brand", this.state.brand);
+		data.append("is_premium", this.state.is_premium);
+		data.append("price", this.state.price);
+		data.append("is_barter", this.props.post.is_barter || false);
+		data.append("is_donate", this.props.post.is_donate || false);
+		data.append("id", this.props.computedMatch.params.id);
+
+		if (this.state.img1.file != null) data.append("img1", this.state.img1.file);
+		if (this.state.img2.file != null) data.append("img2", this.state.img2.file);
+		if (this.state.img3.file != null) data.append("img3", this.state.img3.file);
+		if (this.state.img4.file != null) data.append("img4", this.state.img4.file);
+
 		await this.props.editPostDispatch(data);
 	};
 
@@ -192,8 +228,11 @@ class EditSell extends Component {
 		const categories = getCategories();
 		const colors = getColors();
 		if (this.props.success) {
-			this.props.history.push(`/buy/${this.props.match.params.id}`);
-			return;
+			let type = "buy";
+			if (this.props.post.is_donate) type = "donate";
+			else if (this.props.post.is_barter) type = "exchange";
+			this.props.history.push(`/${type}/${this.props.match.params.id}`);
+			return null;
 		}
 		return (
 			<React.Fragment>
@@ -453,114 +492,130 @@ class EditSell extends Component {
 									></TextField>
 								</div>
 
-								{/* <div className="outer1__sell__lt__img">
-                <label
-                  className="login__right__myForm__formData"
-                  htmlFor="image"
-                >
-                  Images
-                </label>
-                <br />
-                <p>You can choose upto 4 images</p>
-                <div className="outer1__sell__lt__img__sel">
-                  <div className="outer1__sell__lt__img__sel__bdr">
-                    <div className="outer1__sell__lt__img__sel__bdr__crc">
-                      {!this.state.img1.image ? (
-                        <Button variant="contained" component="label">
-                          <AddIcon />
-                          <input
-                            type="file"
-                            hidden
-                            onChange={this.onImageChange}
-                            name="img1"
-                            accept="image/png, image/jpeg"
-                          />
-                        </Button>
-                      ) : (
-                        <>
-                          <img src={this.state.img1.image} />
-                          <CancelRoundedIcon
-                            className="outer1__sell__lt__img__sel__bdr__crc__close"
-                            onClick={() => this.setState({img1:{ image: null, file: null }})}
-                          />
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  <div className="outer1__sell__lt__img__sel__bdr">
-                    <div className="outer1__sell__lt__img__sel__bdr__crc">
-                      {!this.state.img2.image ? (
-                        <Button variant="contained" component="label">
-                          <AddIcon />
-                          <input
-                            type="file"
-                            hidden
-                            onChange={this.onImageChange}
-                            name="img2"
-                            accept="image/png, image/jpeg"
-                          />
-                        </Button>
-                      ) : (
-                        <>
-                          <img src={this.state.img2.image} />
-                          <CancelRoundedIcon
-                            className="outer1__sell__lt__img__sel__bdr__crc__close"
-                            onClick={() => this.setState({img2:{ image: null, file: null }})}
-                          />
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  <div className="outer1__sell__lt__img__sel__bdr">
-                    <div className="outer1__sell__lt__img__sel__bdr__crc">
-                      {!this.state.img3.image ? (
-                        <Button variant="contained" component="label">
-                          <AddIcon />
-                          <input
-                            type="file"
-                            hidden
-                            onChange={this.onImageChange}
-                            name="img3"
-                            accept="image/png, image/jpeg"
-                          />
-                        </Button>
-                      ) : (
-                        <>
-                          <img src={this.state.img3.image} />
-                          <CancelRoundedIcon
-                            className="outer1__sell__lt__img__sel__bdr__crc__close"
-                            onClick={() => this.setState({img3:{ image: null, file: null }})}
-                          />
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  <div className="outer1__sell__lt__img__sel__bdr">
-                    <div className="outer1__sell__lt__img__sel__bdr__crc">
-                      {!this.state.img4.image ? (
-                        <Button variant="contained" component="label">
-                          <AddIcon />
-                          <input
-                            type="file"
-                            hidden
-                            onChange={this.onImageChange}
-                            name="img4"
-                            accept="image/png, image/jpeg"
-                          />
-                        </Button>
-                      ) : (
-                        <>
-                          <img src={this.state.img4.image} />
-                          <CancelRoundedIcon
-                            className="outer1__sell__lt__img__sel__bdr__crc__close"
-                            onClick={() => this.setState({img4:{ image: null, file: null }})}
-                          />
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div> */}
+								<div className="outer1__sell__lt__img">
+									<label
+										className="login__right__myForm__formData"
+										htmlFor="image"
+									>
+										Images
+									</label>
+									<br />
+									<p>You can choose upto 4 images</p>
+									<div className="outer1__sell__lt__img__sel">
+										<div className="outer1__sell__lt__img__sel__bdr">
+											<div className="outer1__sell__lt__img__sel__bdr__crc">
+												{!this.state.img1.image ? (
+													<Button variant="contained" component="label">
+														<AddIcon />
+														<input
+															type="file"
+															hidden
+															onChange={this.onImageChange}
+															name="img1"
+															accept="image/png, image/jpeg"
+														/>
+													</Button>
+												) : (
+													<>
+														<img src={this.state.img1.image} />
+														<CancelRoundedIcon
+															className="outer1__sell__lt__img__sel__bdr__crc__close"
+															onClick={() =>
+																this.setState({
+																	img1: { image: null, file: null },
+																})
+															}
+														/>
+													</>
+												)}
+											</div>
+										</div>
+										<div className="outer1__sell__lt__img__sel__bdr">
+											<div className="outer1__sell__lt__img__sel__bdr__crc">
+												{!this.state.img2.image ? (
+													<Button variant="contained" component="label">
+														<AddIcon />
+														<input
+															type="file"
+															hidden
+															onChange={this.onImageChange}
+															name="img2"
+															accept="image/png, image/jpeg"
+														/>
+													</Button>
+												) : (
+													<>
+														<img src={this.state.img2.image} />
+														<CancelRoundedIcon
+															className="outer1__sell__lt__img__sel__bdr__crc__close"
+															onClick={() =>
+																this.setState({
+																	img2: { image: null, file: null },
+																})
+															}
+														/>
+													</>
+												)}
+											</div>
+										</div>
+										<div className="outer1__sell__lt__img__sel__bdr">
+											<div className="outer1__sell__lt__img__sel__bdr__crc">
+												{!this.state.img3.image ? (
+													<Button variant="contained" component="label">
+														<AddIcon />
+														<input
+															type="file"
+															hidden
+															onChange={this.onImageChange}
+															name="img3"
+															accept="image/png, image/jpeg"
+														/>
+													</Button>
+												) : (
+													<>
+														<img src={this.state.img3.image} />
+														<CancelRoundedIcon
+															className="outer1__sell__lt__img__sel__bdr__crc__close"
+															onClick={() =>
+																this.setState({
+																	img3: { image: null, file: null },
+																})
+															}
+														/>
+													</>
+												)}
+											</div>
+										</div>
+										<div className="outer1__sell__lt__img__sel__bdr">
+											<div className="outer1__sell__lt__img__sel__bdr__crc">
+												{!this.state.img4.image ? (
+													<Button variant="contained" component="label">
+														<AddIcon />
+														<input
+															type="file"
+															hidden
+															onChange={this.onImageChange}
+															name="img4"
+															accept="image/png, image/jpeg"
+														/>
+													</Button>
+												) : (
+													<>
+														<img src={this.state.img4.image} />
+														<CancelRoundedIcon
+															className="outer1__sell__lt__img__sel__bdr__crc__close"
+															onClick={() =>
+																this.setState({
+																	img4: { image: null, file: null },
+																})
+															}
+														/>
+													</>
+												)}
+											</div>
+										</div>
+									</div>
+								</div>
 							</form>
 						</Grid>
 						<Grid
